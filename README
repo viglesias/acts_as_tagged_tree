@@ -30,14 +30,14 @@ It will work with either acts_as_taggable_on or acts_as_taggable_on_steroids
 
 == Installation
 
-  ruby script/plugin install http://svn.aetherical.com/rails/plugins/acts_as_tagged_tree
+ In your gemfile gem 'acts_as_tagged_tree', :git => 'git://github.com/viglesias/acts_as_tagged_tree.git', :branch => 'master'
 
 == Usage
 
 === Prepare database
 Generate and apply the migration:
 
-  ruby script/generate acts_as_tagged_tree_migration
+  rails g acts_as_tagged_tree_migration
   rake db:migrate
 
 === Modify your tagged model
