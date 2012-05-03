@@ -1,0 +1,68 @@
+ActsAsTaggedTree
+================
+
+== Introduction
+
+ActsAsTaggedTree creates and maintains a tree where the following structure exists:
+root -+
+      |
+      + Tag1+
+      |     |
+      |     + node1
+      |     + node2
+      + Tag2+
+      |     |
+      |     + node3
+      + Tag3+
+            |
+            + node1
+            + node3
+
+Note that nodes can exist in more than one tag.
+
+== Requirements
+
+ActsAsTaggedTree requires the following gems/plugins:
+acts_as_tree
+acts_as_taggable_on[_steroids]
+
+It will work with either acts_as_taggable_on or acts_as_taggable_on_steroids
+
+== Installation
+
+  ruby script/plugin install http://svn.aetherical.com/rails/plugins/acts_as_tagged_tree
+
+== Usage
+
+=== Prepare database
+Generate and apply the migration:
+
+  ruby script/generate acts_as_tagged_tree_migration
+  rake db:migrate
+
+=== Modify your tagged model
+
+Within your tagged model add
+
+acts_as_tagged_tree [:label => :property]
+
+
+:property is an optional property which is used as the label of a node
+in the tree.  By default it is name
+
+Example
+=======
+
+  class Post < ActiveRecord::Base
+    acts_as_taggable
+    acts_as_tagged_tree :label => :title
+  end
+
+Optionally you can add a :treemap => true to the arguments of the
+acts_as_tagged_tree call and it will add the ability of
+acts_as_treemap to the tagged tree.  Bear in mind you'll have to
+install acts_as_treemap if you do so.  You can optionally add size and
+color methods to your Model to adjust the size and color of the node
+in a treemap.
+
+Copyright (c) 2008 [name of plugin creator], released under the MIT license
